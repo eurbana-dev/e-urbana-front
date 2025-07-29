@@ -10,8 +10,29 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/outfit": "^5.2.6",
+    "@nivo/bar": "^0.99.0",
+    "@nivo/bump": "^0.99.0",
+    "@nivo/calendar": "^0.99.0",
+    "@nivo/circle-packing": "^0.99.0",
+    "@nivo/core": "^0.99.0",
+    "@nivo/geo": "^0.99.0",
+    "@nivo/heatmap": "^0.99.0",
+    "@nivo/line": "^0.99.0",
+    "@nivo/pie": "^0.99.0",
+    "@nivo/radar": "^0.99.0",
+    "@nivo/sankey": "^0.99.0",
+    "@nivo/stream": "^0.99.0",
+    "@nivo/treemap": "^0.99.0",
+    "axios": "^1.11.0",
+    "d3": "^7.9.0",
+    "framer-motion": "^10.16.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.7.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
