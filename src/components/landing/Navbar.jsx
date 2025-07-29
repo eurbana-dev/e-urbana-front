@@ -1,4 +1,5 @@
 // src/components/landing/Navbar.jsx
+import React from "react"
 import {
   Box,
   Flex,
@@ -10,7 +11,7 @@ import {
   useBreakpointValue,
   Image,
 } from "@chakra-ui/react"
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons"
+import { List, X } from "phosphor-react"
 import logo from "../../assets/imagenes/EUrbanalogo.png"
 
 const Navbar = () => {
@@ -19,7 +20,7 @@ const Navbar = () => {
 
   // tamaños en rem según breakpoint
   const logoSize = useBreakpointValue({ base: "2rem", md: "2.5rem" })
-  const iconSize = useBreakpointValue({ base: "1rem", md: "1.5rem" })
+  const iconSize = useBreakpointValue({ base: 24, md: 32 })
 
   const links = [
     { label: "Inicio", href: "/" },
@@ -62,9 +63,8 @@ const Navbar = () => {
                 color={link.variant === "solid" ? "brand.500" : "gray.600"}
                 _hover={{
                   textDecor: "none",
-                  color: link.variant === "solid"
-                    ? "brand.600"
-                    : "brand.500",
+                  color:
+                    link.variant === "solid" ? "brand.600" : "brand.500",
                 }}
               >
                 {link.label}
@@ -81,9 +81,9 @@ const Navbar = () => {
             variant="ghost"
             icon={
               isOpen ? (
-                <CloseIcon boxSize={iconSize} />
+                <X size={iconSize} />
               ) : (
-                <HamburgerIcon boxSize={iconSize} />
+                <List size={iconSize} />
               )
             }
           />
@@ -116,7 +116,9 @@ const Navbar = () => {
                     textDecor: "none",
                     bg: "gray.100",
                     color:
-                      link.variant === "solid" ? "brand.600" : "brand.500",
+                      link.variant === "solid"
+                        ? "brand.600"
+                        : "brand.500",
                   }}
                 >
                   {link.label}
