@@ -7,20 +7,44 @@ import {
   Stack,
   Image,
   SimpleGrid,
-  Icon,
   useColorModeValue,
 } from "@chakra-ui/react"
 import { Buildings, Lightning, ChartLine } from "phosphor-react"
+import { ResponsiveLine } from "@nivo/line"
 
 const Feature = ({ icon, title, text }) => {
   return (
-    <Stack align="center" textAlign="center" p={5} borderWidth={1} borderRadius="xl">
-      <Box as={icon} size={32} color="blue" />
-      <Heading size="md">{title}</Heading>
-      <Text>{text}</Text>
+    <Stack
+      align="center"
+      textAlign="center"
+      p={5}
+      borderWidth={1}
+      borderRadius="xl"
+      borderColor={useColorModeValue("gray.200", "gray.700")}
+      bg={useColorModeValue("white", "gray.900")}
+    >
+      <Box as={icon} size={32} color="brand.500" />
+      <Heading size="md" color="brand.700">{title}</Heading>
+      <Text color={useColorModeValue("gray.600", "gray.400")}>{text}</Text>
     </Stack>
   )
 }
+
+const data = [
+  {
+    id: "Consumo",
+    color: "hsl(190, 70%, 50%)",
+    data: [
+      { x: "Lun", y: 12 },
+      { x: "Mar", y: 18 },
+      { x: "Mié", y: 22 },
+      { x: "Jue", y: 16 },
+      { x: "Vie", y: 19 },
+      { x: "Sáb", y: 14 },
+      { x: "Dom", y: 11 },
+    ],
+  },
+]
 
 export default function Home() {
   return (
@@ -28,12 +52,12 @@ export default function Home() {
       <Container maxW="6xl">
         <Stack spacing={8} align="center" textAlign="center">
           <Heading fontSize={{ base: "3xl", md: "4xl" }}>
-            Bienvenido a <Text as="span" color="blue.400">E. Urbana</Text>
+            Bienvenido a <Text as="span" color="brand.400">E. Urbana</Text>
           </Heading>
           <Text color="gray.600" maxW="3xl">
             Plataforma inteligente de gestión energética para iluminación urbana. Visualiza, controla y mejora la eficiencia de tus luminarias.
           </Text>
-          <Button colorScheme="blue" size="lg">Empezar</Button>
+          <Button colorScheme="brand" size="lg">Empezar</Button>
         </Stack>
 
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10} mt={14}>
@@ -54,15 +78,68 @@ export default function Home() {
           />
         </SimpleGrid>
 
-        <Image
-          mt={16}
-          borderRadius="xl"
-          src="https://images.unsplash.com/photo-1549921296-3a90e9d1efb4"
-          alt="Ciudad iluminada"
-          w="full"
-          h={{ base: "200px", md: "400px" }}
-          objectFit="cover"
-        />
+        {/* Grafico de nivo de ejemplo */}
+        <Box h="400px" mt={20} borderRadius="xl" bg="white" p={5} boxShadow="md">
+          <ResponsiveLine
+            data={data}
+            margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+            xScale={{ type: "point" }}
+            yScale={{
+              type: "linear",
+              min: "auto",
+              max: "auto",
+              stacked: false,
+              reverse: false,
+            }}
+            axisTop={null}
+            axisRight={null}
+            axisBottom={{
+              orient: "bottom",
+              legend: "Día de la semana",
+              legendOffset: 36,
+              legendPosition: "middle",
+            }}
+            axisLeft={{
+              orient: "left",
+              legend: "Consumo (kWh)",
+              legendOffset: -40,
+              legendPosition: "middle",
+            }}
+            colors={{ scheme: "category10" }}
+            pointSize={10}
+            pointColor={{ theme: "background" }}
+            pointBorderWidth={2}
+            pointBorderColor={{ from: "serieColor" }}
+            pointLabelYOffset={-12}
+            useMesh={true}
+            legends={[
+              {
+                anchor: "bottom-right",
+                direction: "column",
+                justify: false,
+                translateX: 100,
+                translateY: 0,
+                itemsSpacing: 0,
+                itemDirection: "left-to-right",
+                itemWidth: 80,
+                itemHeight: 20,
+                itemOpacity: 0.75,
+                symbolSize: 12,
+                symbolShape: "circle",
+                symbolBorderColor: "rgba(0, 0, 0, .5)",
+                effects: [
+                  {
+                    on: "hover",
+                    style: {
+                      itemBackground: "rgba(0, 0, 0, .03)",
+                      itemOpacity: 1,
+                    },
+                  },
+                ],
+              },
+            ]}
+          />
+        </Box>
       </Container>
     </Box>
   )
