@@ -1,13 +1,14 @@
-import { Box, Button, Heading } from '@chakra-ui/react'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Home from "./pages/test/home.jsx"
+// Puedes ir agregando más páginas: Dashboard, Login, etc.
 
 function App() {
   return (
-    <Box p={4}>
-      <Heading>E. Urbana</Heading>
-      <Button colorScheme="blue" mt={4}>
-        Iniciar
-      </Button>
-    </Box>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
   )
 }
 
