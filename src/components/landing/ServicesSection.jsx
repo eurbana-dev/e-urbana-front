@@ -1,5 +1,4 @@
-// src/components/landing/ServicesSection.jsx
-import React from 'react'
+import React, { useRef } from 'react'
 import {
   Box,
   Container,
@@ -11,9 +10,14 @@ import {
   useTheme,
 } from '@chakra-ui/react'
 import { GridFour, ArrowClockwise, Envelope } from 'phosphor-react'
+import { motion, useInView } from 'framer-motion'
+
+const MotionBox = motion(Box)
 
 const ServicesSection = () => {
   const theme = useTheme()
+  const sectionRef = useRef(null)
+  const inView = useInView(sectionRef, { once: false, margin: '-80px 0px' })
 
   const services = [
     {
@@ -39,12 +43,12 @@ const ServicesSection = () => {
     },
   ]
 
-  const bgColor   = useColorModeValue('white', 'gray.800')
+  const bgColor = useColorModeValue('white', 'gray.800')
   const textColor = useColorModeValue('brand.900', 'white')
   const descColor = useColorModeValue('gray.600', 'gray.300')
 
   return (
-    <Box bg={bgColor} py={{ base: '2rem', md: '3rem' }}>
+    <Box bg={bgColor} py={{ base: '2rem', md: '3rem' }} ref={sectionRef}>
       <Container maxW="3xl" centerContent>
         <Heading
           fontSize={{ base: '1.5rem', md: '2rem' }}
@@ -58,8 +62,8 @@ const ServicesSection = () => {
         </Heading>
 
         <VStack spacing="1.5rem" w="100%">
-          {services.map(({ icon: IconComp, title, description, accentColor }) => (
-            <Box
+          {services.map(({ icon: IconComp, title, description, accentColor }, i) => (
+            <MotionBox
               key={title}
               w="100%"
               bg={bgColor}
@@ -68,13 +72,14 @@ const ServicesSection = () => {
               borderRadius="md"
               boxShadow="sm"
               p={{ base: '1rem', md: '1.5rem' }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.4, delay: i * 0.1, ease: 'easeOut' }}
             >
-              {/* Ícono arriba y centrado */}
               <Center mb="1rem" color={accentColor}>
-                <IconComp size={48} weight="duotone" />
+                <IconComp size={44} weight="duotone" />
               </Center>
 
-              {/* Título */}
               <Text
                 fontSize={{ base: '1.125rem', md: '1.25rem' }}
                 fontWeight="semibold"
@@ -85,7 +90,6 @@ const ServicesSection = () => {
                 {title}
               </Text>
 
-              {/* Descripción */}
               <Text
                 fontSize={{ base: '0.875rem', md: '1rem' }}
                 color={descColor}
@@ -93,7 +97,7 @@ const ServicesSection = () => {
               >
                 {description}
               </Text>
-            </Box>
+            </MotionBox>
           ))}
         </VStack>
       </Container>

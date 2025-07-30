@@ -1,4 +1,3 @@
-// src/components/landing/AboutUsSection.jsx
 import {
   Box,
   Container,
@@ -14,33 +13,56 @@ import {
   SimpleGrid,
 } from '@chakra-ui/react'
 import { CheckCircle } from 'phosphor-react'
-import illustration from '../../assets/imagenes/developer.svg' 
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
+import illustration from '../../assets/images/developer.svg'
+
+const MotionBox = motion(Box)
+const MotionFlex = motion(Flex)
+const MotionVStack = motion(VStack)
 
 const AboutUsSection = () => {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: false, margin: '-100px 0px' })
+
   const highlight = useColorModeValue('brand.400', 'brand.300')
   const textColor = useColorModeValue('brand.900', 'white')
   const mutedText = useColorModeValue('gray.600', 'gray.400')
 
   return (
-    <Box py={{ base: '3rem', md: '4rem' }} bg="white">
+    <Box py={{ base: '3rem', md: '4rem' }} bg="white" ref={ref}>
       <Container maxW="6xl">
-        <Flex
+        <MotionFlex
           direction={{ base: 'column', md: 'row' }}
           align="center"
           gap={{ base: '2rem', md: '4rem' }}
+          initial={{ opacity: 0, y: 60 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
         >
           {/* Imagen */}
-          <Box flex="1" textAlign="center">
+          <MotionBox
+            flex="1"
+            textAlign="center"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
             <Image
               src={illustration}
               alt="Ilustración programador"
               maxW="100%"
               height="auto"
             />
-          </Box>
+          </MotionBox>
 
           {/* Texto */}
-          <Box flex="1">
+          <MotionBox
+            flex="1"
+            initial={{ opacity: 0, y: 40 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <Text fontSize="sm" color={highlight} fontWeight="bold" mb="0.5rem">
               NOSOTROS
             </Text>
@@ -67,42 +89,58 @@ const AboutUsSection = () => {
               reduciendo tiempos de respuesta y mejorando la toma de decisiones.
             </Text>
 
-            <List spacing={3} mb="2rem">
-              <ListItem color={textColor}>
-                <ListIcon as={CheckCircle} color={highlight} />
-                Eficiencia sin límites
-              </ListItem>
-              <ListItem color={textColor}>
-                <ListIcon as={CheckCircle} color={highlight} />
-                Control total, cero desperdicios
-              </ListItem>
-              <ListItem color={textColor}>
-                <ListIcon as={CheckCircle} color={highlight} />
-                Datos que potencian decisiones
-              </ListItem>
-            </List>
+            <MotionBox
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+            >
+              <List spacing={3} mb="2rem">
+                <ListItem color={textColor}>
+                  <ListIcon as={CheckCircle} color={highlight} />
+                  Eficiencia sin límites
+                </ListItem>
+                <ListItem color={textColor}>
+                  <ListIcon as={CheckCircle} color={highlight} />
+                  Control total, cero desperdicios
+                </ListItem>
+                <ListItem color={textColor}>
+                  <ListIcon as={CheckCircle} color={highlight} />
+                  Datos que potencian decisiones
+                </ListItem>
+              </List>
+            </MotionBox>
 
             {/* Contadores */}
             <SimpleGrid columns={{ base: 2, md: 2 }} spacing="2rem">
-              <VStack spacing="0">
+              <MotionVStack
+                spacing="0"
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: 0.6, duration: 0.5 }}
+              >
                 <Heading color={textColor} fontSize="2rem">
                   100
                 </Heading>
                 <Text fontSize="sm" color={mutedText}>
                   Empresas con nosotros
                 </Text>
-              </VStack>
-              <VStack spacing="0">
+              </MotionVStack>
+              <MotionVStack
+                spacing="0"
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: 0.7, duration: 0.5 }}
+              >
                 <Heading color={textColor} fontSize="2rem">
                   2
                 </Heading>
                 <Text fontSize="sm" color={mutedText}>
                   Años de servicio
                 </Text>
-              </VStack>
+              </MotionVStack>
             </SimpleGrid>
-          </Box>
-        </Flex>
+          </MotionBox>
+        </MotionFlex>
       </Container>
     </Box>
   )

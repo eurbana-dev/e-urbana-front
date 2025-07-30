@@ -1,4 +1,3 @@
-// src/components/landing/WhyChooseUsSection.jsx
 import {
   Box,
   Container,
@@ -8,7 +7,11 @@ import {
   Flex,
   useColorModeValue,
 } from '@chakra-ui/react'
-import {  Money, Cpu, ShieldCheck, Headset } from 'phosphor-react' // temporal, repítelo en los 4
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
+import { Money, Cpu, ShieldCheck, Headset } from 'phosphor-react'
+
+const MotionFlex = motion(Flex)
 
 const features = [
   {
@@ -38,13 +41,16 @@ const features = [
 ]
 
 const WhyChooseUsSection = () => {
+  const sectionRef = useRef(null)
+  const inView = useInView(sectionRef, { once: false, margin: '-100px 0px' })
+
   const bgIcon = useColorModeValue('brand.100', 'brand.100')
   const iconColor = useColorModeValue('brand.500', 'brand.500')
   const titleColor = useColorModeValue('brand.900', 'white')
   const descColor = useColorModeValue('brand.400', 'brand.300')
 
   return (
-    <Box py={{ base: '3rem', md: '4rem' }} bg="white">
+    <Box py={{ base: '3rem', md: '4rem' }} bg="white" ref={sectionRef}>
       <Container maxW="6xl">
         <Heading
           textAlign="center"
@@ -64,8 +70,23 @@ const WhyChooseUsSection = () => {
         </Text>
 
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing="3rem">
-          {features.map(({ icon: Icon, title, description }) => (
-            <Flex key={title} align="flex-start" gap="1.5rem">
+          {features.map(({ icon: Icon, title, description }, index) => (
+            <MotionFlex
+              key={title}
+              align="flex-start"
+              gap="1.5rem"
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              animate={
+                inView
+                  ? { opacity: 1, y: 0, scale: 1 }
+                  : { opacity: 0, y: 40, scale: 0.95 }
+              }
+              transition={{
+                duration: 0.5,
+                delay: index * 0.15,
+                ease: 'easeOut',
+              }}
+            >
               <Box
                 bg={bgIcon}
                 p="0.9rem"
@@ -93,7 +114,7 @@ const WhyChooseUsSection = () => {
                   {description}
                 </Text>
               </Box>
-            </Flex>
+            </MotionFlex>
           ))}
         </SimpleGrid>
       </Container>

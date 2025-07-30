@@ -1,7 +1,7 @@
 // src/components/Loader.jsx
 import React, { useState, useEffect } from "react"
 import { Box, Image } from "@chakra-ui/react"
-import loaderGif from "../assets/gif/Loading.gif" // ajusta la ruta a tu GIF
+import loaderGif from "../assets/gifs/Loading.gif" // ajusta la ruta a tu GIF
 
 const Loader = () => {
   const [isLoaded, setIsLoaded] = useState(false)

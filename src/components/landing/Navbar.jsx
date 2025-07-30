@@ -12,7 +12,7 @@ import {
   Image,
 } from "@chakra-ui/react"
 import { List, X } from "phosphor-react"
-import logo from "../../assets/imagenes/EUrbanalogo.png"
+import logo from "../../assets/images/EUrbanalogo.png"
 
 const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure()
