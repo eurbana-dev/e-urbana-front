@@ -5,18 +5,18 @@ import Loader   from "./components/Loader.jsx"
 import Home     from "./pages/Home.jsx"
 import Contacto from "./pages/test/contacto.jsx"
 import Login    from "./pages/test/login.jsx"
+import AuthPage from "./pages/auth/authPage.jsx"
 
 function App() {
   return (
     <>
-      {/* Loader con fade-out */}
-      <Loader />
+     
 
       <Router>
         <Routes>
           <Route path="/"         element={<Home     />} />
           <Route path="/contacto" element={<Contacto />} />
-          <Route path="/login"    element={<Login    />} />
+          <Route path="/login"    element={<AuthPage    />} />
         </Routes>
       </Router>
     </>
