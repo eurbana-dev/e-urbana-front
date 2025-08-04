@@ -39,7 +39,7 @@ const Navbar = () => {
       top="0"
       zIndex="1000"
     >
-      <Flex align="center" justify="space-between" maxW="60rem" mx="auto">
+      <Flex align="center" justify="space-between" w="100%">
         {/* Logo */}
         <Link href="/">
           <Image
@@ -51,7 +51,7 @@ const Navbar = () => {
 
         {/* Desktop Links */}
         {!isMobile && (
-          <Flex align="center" gap={{ base: "0.5rem", md: "1rem" }}>
+          <Flex align="center" gap={{ base: "1rem", md: "1rem" }}>
             {links.map((link) => (
               <Link
                 key={link.label}

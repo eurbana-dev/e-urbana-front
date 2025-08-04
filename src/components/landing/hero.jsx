@@ -9,7 +9,8 @@ import {
 } from '@chakra-ui/react'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import lampIllustration from '../../assets/images/ciudad_iluminada.png'
+import videoFile from '../../assets/video/video1.mp4'
+
 
 const MotionBox = motion(Box)
 const MotionFlex = motion(Flex)
@@ -101,24 +102,22 @@ const Hero = ({ scrollToServices }) => {
 
         {/* Ilustración */}
         <MotionBox
+          as="video"
+          autoPlay
+          muted
+          playsInline
+          onEnded={() => console.log('Fin del video')}
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
           w={{ base: '80%', md: '60%', lg: '40%' }}
           mx="auto"
-          initial={{ opacity: 0, scale: 0.92, rotate: -2 }}
-          animate={
-            inView
-              ? { opacity: 1, scale: 1, rotate: 0 }
-              : { opacity: 0, scale: 0.92, rotate: -2 }
-          }
-          transition={{ duration: 0.7, delay: 0.4 }}
         >
-          <MotionImage
-            src={lampIllustration}
-            alt="Luminaria inteligente"
-            maxW="100%"
-          />
+          <source src={videoFile} type="video/mp4" />
         </MotionBox>
+
       </MotionFlex>
-    </Box>
+    </Box >
   )
 }
 
