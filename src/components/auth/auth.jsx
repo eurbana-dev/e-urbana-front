@@ -35,6 +35,7 @@ const AuthPage = () => {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("correoUsuario", correo);
       localStorage.setItem("rolUsuario", res.data.rol); 
+      localStorage.setItem("nombreUsuario", res.data.nombre);
       navigate("/dashboard");
     } catch (error) {
       const msg =

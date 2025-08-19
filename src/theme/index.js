@@ -11,7 +11,8 @@ const theme = extendTheme({
       900: "#324B61", // Sidebar y textos oscuros
       600: "#16be804b", // Fondo de tarjetas y formularios
       800: "#878787ff", // textos secundarios
-      700: "#34b299bd", // Fondo ligero 
+      700: "#34b299bd", // Fondo ligero
+      750: "#ffffffff"
     },
     alert: {
       info: "#3182ce",     // Azul

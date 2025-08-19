@@ -12,6 +12,7 @@ import NotFound from "./pages/NotFound.jsx";
 import Luminarias from "./pages/luminarias/luminarias.jsx";
 import Registros from "./pages/reportes/registros.jsx";
 import Consumos from "./pages/reportes/consumos.jsx";
+import Mantenimiento from "./pages/reportes/mantenimiento.jsx";
 function App() {
   return (
     <Router>
@@ -28,6 +29,7 @@ function App() {
             <Route path="/luminarias" element={<ProtectedRoute><Luminarias /></ProtectedRoute>} />
             <Route path="/registros" element={<ProtectedRoute><Registros /></ProtectedRoute>} />
             <Route path="/consumos" element={<ProtectedRoute><Consumos /></ProtectedRoute>} />
+            <Route path="/mantenimiento" element={<ProtectedRoute><Mantenimiento /></ProtectedRoute>} />
             {/* Agrega más rutas según necesites */}
           </Routes>
         </main>
