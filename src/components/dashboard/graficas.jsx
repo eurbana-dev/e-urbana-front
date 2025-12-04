@@ -654,68 +654,68 @@ const Graficas = () => {
   };
 
   return (
-    <Box p={6}>
-      <VStack spacing={6} align="stretch">
+    <Box p={{ base: 2, md: 4, lg: 6 }}>
+      <VStack spacing={{ base: 4, md: 6 }} align="stretch">
         
         {/* Resumen General del Sistema - Ancho completo */}
-        <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" mt="70px" shadow="md">
+        <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" mt={{ base: "60px", md: "70px" }} shadow="md">
           <CardHeader>
-            <Heading size="lg" color="brand.500" textAlign="center">
+            <Heading size={{ base: "md", md: "lg" }} color="brand.500" textAlign="center">
                Resumen General del Sistema
             </Heading>
           </CardHeader>
           <CardBody>
-            <Grid templateColumns="repeat(auto-fit, minmax(200px, 1fr))" gap={6}>
+            <Grid templateColumns={{ base: "repeat(1, 1fr)", sm: "repeat(2, 1fr)", md: "repeat(3, 1fr)", lg: "repeat(5, 1fr)" }} gap={{ base: 3, md: 6 }}>
               <Stat textAlign="center">
-                <StatLabel>Total Luminarias</StatLabel>
-                <StatNumber color="brand.500">{estadisticas.totalLuminarias}</StatNumber>
-                <StatHelpText>
+                <StatLabel fontSize={{ base: "xs", md: "sm" }}>Total Luminarias</StatLabel>
+                <StatNumber fontSize={{ base: "xl", md: "2xl" }} color="brand.500">{estadisticas.totalLuminarias}</StatNumber>
+                <StatHelpText fontSize={{ base: "xs", md: "sm" }}>
                   <StatArrow type="increase" />
                   Sistema completo
                 </StatHelpText>
               </Stat>
               <Stat textAlign="center">
-                <StatLabel>Luminarias Activas</StatLabel>
-                <StatNumber color="green.500">{estadisticas.luminariasActivas}</StatNumber>
-                <StatHelpText>
+                <StatLabel fontSize={{ base: "xs", md: "sm" }}>Luminarias Activas</StatLabel>
+                <StatNumber fontSize={{ base: "xl", md: "2xl" }} color="green.500">{estadisticas.luminariasActivas}</StatNumber>
+                <StatHelpText fontSize={{ base: "xs", md: "sm" }}>
                   {((estadisticas.luminariasActivas / estadisticas.totalLuminarias) * 100 || 0).toFixed(1)}% operativas
                 </StatHelpText>
               </Stat>
               <Stat textAlign="center">
-                <StatLabel>Total Usuarios</StatLabel>
-                <StatNumber color="blue.500">{estadisticas.totalUsuarios}</StatNumber>
-                <StatHelpText>Usuarios registrados</StatHelpText>
+                <StatLabel fontSize={{ base: "xs", md: "sm" }}>Total Usuarios</StatLabel>
+                <StatNumber fontSize={{ base: "xl", md: "2xl" }} color="blue.500">{estadisticas.totalUsuarios}</StatNumber>
+                <StatHelpText fontSize={{ base: "xs", md: "sm" }}>Usuarios registrados</StatHelpText>
               </Stat>
               <Stat textAlign="center">
-                <StatLabel>Mantenimientos Pendientes</StatLabel>
-                <StatNumber color="orange.500">{estadisticas.mantenimientosPendientes}</StatNumber>
-                <StatHelpText>Requieren atención</StatHelpText>
+                <StatLabel fontSize={{ base: "xs", md: "sm" }}>Mantenimientos Pendientes</StatLabel>
+                <StatNumber fontSize={{ base: "xl", md: "2xl" }} color="orange.500">{estadisticas.mantenimientosPendientes}</StatNumber>
+                <StatHelpText fontSize={{ base: "xs", md: "sm" }}>Requieren atención</StatHelpText>
               </Stat>
               <Stat textAlign="center">
-                <StatLabel>Consumo Promedio</StatLabel>
-                <StatNumber color="purple.500">{estadisticas.consumoPromedio} kWh</StatNumber>
-                <StatHelpText>Por luminaria</StatHelpText>
+                <StatLabel fontSize={{ base: "xs", md: "sm" }}>Consumo Promedio</StatLabel>
+                <StatNumber fontSize={{ base: "xl", md: "2xl" }} color="purple.500">{estadisticas.consumoPromedio} kWh</StatNumber>
+                <StatHelpText fontSize={{ base: "xs", md: "sm" }}>Por luminaria</StatHelpText>
               </Stat>
             </Grid>
           </CardBody>
         </Card>
 
-        {/* Grid de Gráficas - 6 columnas (2 filas de 3) */}
-        <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+        {/* Grid de Gráficas - Responsive */}
+        <Grid templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }} gap={{ base: 4, md: 6 }}>
           
           {/* Distribución por Estado */}
           <GridItem>
-            <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" shadow="md" height="400px">
-              <CardHeader>
-                <Heading size="md" color="brand.500">
+            <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" shadow="md" height={{ base: "350px", md: "400px" }}>
+              <CardHeader pb={{ base: 2, md: 4 }}>
+                <Heading size={{ base: "sm", md: "md" }} color="brand.500">
                   Distribución por Estado
                 </Heading>
               </CardHeader>
-              <CardBody>
-                <Box height="300px">
+              <CardBody pt={{ base: 0, md: 2 }}>
+                <Box height={{ base: "280px", md: "300px" }}>
                   <ResponsivePie
                     data={luminariasData}
-                    margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+                    margin={{ top: 20, right: 40, bottom: 40, left: 40 }}
                     innerRadius={0.5}
                     padAngle={0.7}
                     cornerRadius={3}
@@ -728,6 +728,7 @@ const Graficas = () => {
                     arcLinkLabelsThickness={2}
                     arcLabelsSkipAngle={10}
                     arcLabelsTextColor={{ from: 'color', modifiers: [['darker', 2]] }}
+                    enableArcLinkLabels={window.innerWidth > 768}
                   />
                 </Box>
               </CardBody>
@@ -736,19 +737,19 @@ const Graficas = () => {
 
           {/* Estado de Mantenimientos */}
           <GridItem>
-            <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" shadow="md" height="400px">
-              <CardHeader>
-                <Heading size="md" color="brand.500">
+            <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" shadow="md" height={{ base: "350px", md: "400px" }}>
+              <CardHeader pb={{ base: 2, md: 4 }}>
+                <Heading size={{ base: "sm", md: "md" }} color="brand.500">
                   Estado de Mantenimientos
                 </Heading>
               </CardHeader>
-              <CardBody>
-                <Box height="300px">
+              <CardBody pt={{ base: 0, md: 2 }}>
+                <Box height={{ base: "280px", md: "300px" }}>
                   <ResponsiveBar
                     data={mantenimientosData}
                     keys={['completados', 'pendientes', 'programados']}
                     indexBy="mes"
-                    margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+                    margin={{ top: 30, right: window.innerWidth < 768 ? 80 : 130, bottom: 40, left: window.innerWidth < 768 ? 40 : 60 }}
                     padding={0.3}
                     valueScale={{ type: 'linear' }}
                     indexScale={{ type: 'band', round: true }}
@@ -759,8 +760,8 @@ const Graficas = () => {
                     axisBottom={{
                       tickSize: 5,
                       tickPadding: 5,
-                      tickRotation: 0,
-                      legend: 'Mes',
+                      tickRotation: window.innerWidth < 768 ? -45 : 0,
+                      legend: window.innerWidth < 768 ? '' : 'Mes',
                       legendPosition: 'middle',
                       legendOffset: 32
                     }}
@@ -768,7 +769,7 @@ const Graficas = () => {
                       tickSize: 5,
                       tickPadding: 5,
                       tickRotation: 0,
-                      legend: 'Cantidad',
+                      legend: window.innerWidth < 768 ? '' : 'Cantidad',
                       legendPosition: 'middle',
                       legendOffset: -40
                     }}
@@ -778,14 +779,14 @@ const Graficas = () => {
                         anchor: 'bottom-right',
                         direction: 'column',
                         justify: false,
-                        translateX: 120,
+                        translateX: window.innerWidth < 768 ? 70 : 120,
                         translateY: 0,
                         itemsSpacing: 2,
-                        itemWidth: 100,
+                        itemWidth: window.innerWidth < 768 ? 80 : 100,
                         itemHeight: 20,
                         itemDirection: 'left-to-right',
                         itemOpacity: 0.85,
-                        symbolSize: 20,
+                        symbolSize: window.innerWidth < 768 ? 12 : 20,
                         effects: [
                           {
                             on: 'hover',
@@ -807,17 +808,22 @@ const Graficas = () => {
 
           {/* Gráfica de Calor - Frecuencia de Mantenimientos */}
           <GridItem>
-            <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" shadow="md" height="400px">
-              <CardHeader>
-                <Heading size="md" color="brand.500">
+            <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" shadow="md" height={{ base: "350px", md: "400px" }}>
+              <CardHeader pb={{ base: 2, md: 4 }}>
+                <Heading size={{ base: "sm", md: "md" }} color="brand.500">
                   Frecuencia de Mantenimientos
                 </Heading>
               </CardHeader>
-              <CardBody>
-                <Box height="300px">
+              <CardBody pt={{ base: 0, md: 2 }}>
+                <Box height={{ base: "280px", md: "300px" }}>
                   <ResponsiveHeatMap
                     data={heatmapData}
-                    margin={{ top: 60, right: 90, bottom: 60, left: 90 }}
+                    margin={{ 
+                      top: window.innerWidth < 768 ? 40 : 60, 
+                      right: window.innerWidth < 768 ? 60 : 90, 
+                      bottom: window.innerWidth < 768 ? 40 : 60, 
+                      left: window.innerWidth < 768 ? 60 : 90 
+                    }}
                     valueFormat=">-.2s"
                     axisTop={{
                       tickSize: 5,
@@ -830,7 +836,7 @@ const Graficas = () => {
                       tickSize: 5,
                       tickPadding: 5,
                       tickRotation: 0,
-                      legend: 'Día de la semana',
+                      legend: window.innerWidth < 768 ? '' : 'Día de la semana',
                       legendPosition: 'middle',
                       legendOffset: 70
                     }}
@@ -838,7 +844,7 @@ const Graficas = () => {
                       tickSize: 5,
                       tickPadding: 5,
                       tickRotation: -90,
-                      legend: 'Hora del día',
+                      legend: window.innerWidth < 768 ? '' : 'Hora del día',
                       legendPosition: 'middle',
                       legendOffset: 46
                     }}
@@ -846,7 +852,7 @@ const Graficas = () => {
                       tickSize: 5,
                       tickPadding: 5,
                       tickRotation: 0,
-                      legend: 'Día',
+                      legend: window.innerWidth < 768 ? '' : 'Día',
                       legendPosition: 'middle',
                       legendOffset: -72
                     }}
@@ -858,7 +864,7 @@ const Graficas = () => {
                       maxValue: Math.max(1, ...heatmapData.flatMap(d => d.data.map(p => p.y)))
                     }}
                     emptyColor="#eeeeee"
-                    legends={[
+                    legends={window.innerWidth < 768 ? [] : [
                       {
                         anchor: 'bottom',
                         translateX: 0,
@@ -884,21 +890,24 @@ const Graficas = () => {
 
           {/* Consumo Energético */}
           <GridItem>
-            <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" shadow="md" height="400px">
-              <CardHeader>
-                <Heading size="md" color="brand.500">
-                  Consumo Energético (Últimos 30 días)
+            <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" shadow="md" height={{ base: "350px", md: "400px" }}>
+              <CardHeader pb={{ base: 2, md: 4 }}>
+                <Heading size={{ base: "sm", md: "md" }} color="brand.500">
+                  Consumo Energético
                 </Heading>
+                <Text fontSize={{ base: "xs", md: "sm" }} color="gray.600">
+                  Últimos 30 días
+                </Text>
               </CardHeader>
-              <CardBody>
-                <Box height="300px">
+              <CardBody pt={{ base: 0, md: 2 }}>
+                <Box height={{ base: "280px", md: "300px" }}>
                   <ResponsiveLine
                     data={[{
                       id: 'consumo',
                       color: theme.colors.brand[500],
                       data: consumosData
                     }]}
-                    margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+                    margin={{ top: 30, right: window.innerWidth < 768 ? 60 : 110, bottom: 40, left: window.innerWidth < 768 ? 40 : 60 }}
                     xScale={{ type: 'point' }}
                     yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
                     yFormat=" >-.2f"
@@ -908,8 +917,8 @@ const Graficas = () => {
                     axisBottom={{
                       tickSize: 5,
                       tickPadding: 5,
-                      tickRotation: 0,
-                      legend: 'Fecha',
+                      tickRotation: window.innerWidth < 768 ? -45 : 0,
+                      legend: window.innerWidth < 768 ? '' : 'Fecha',
                       legendOffset: 36,
                       legendPosition: 'middle'
                     }}
@@ -917,17 +926,17 @@ const Graficas = () => {
                       tickSize: 5,
                       tickPadding: 5,
                       tickRotation: 0,
-                      legend: 'Consumo (kWh)',
+                      legend: window.innerWidth < 768 ? '' : 'Consumo (kWh)',
                       legendOffset: -40,
                       legendPosition: 'middle'
                     }}
-                    pointSize={10}
+                    pointSize={window.innerWidth < 768 ? 6 : 10}
                     pointColor={{ theme: 'background' }}
                     pointBorderWidth={2}
                     pointBorderColor={{ from: 'serieColor' }}
                     pointLabelYOffset={-12}
                     useMesh={true}
-                    legends={[
+                    legends={window.innerWidth < 768 ? [] : [
                       {
                         anchor: 'bottom-right',
                         direction: 'column',
@@ -961,28 +970,28 @@ const Graficas = () => {
 
           {/* Estadísticas de Usuarios */}
           <GridItem>
-            <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" shadow="md" height="400px">
-              <CardHeader>
-                <Heading size="md" color="brand.500">
+            <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" shadow="md" height={{ base: "auto", md: "400px" }} minH={{ base: "350px" }}>
+              <CardHeader pb={{ base: 2, md: 4 }}>
+                <Heading size={{ base: "sm", md: "md" }} color="brand.500">
                   Estadísticas de Usuarios
                 </Heading>
-                <Text fontSize="sm" color="gray.600">
+                <Text fontSize={{ base: "xs", md: "sm" }} color="gray.600">
                   Información del sistema de usuarios
                 </Text>
               </CardHeader>
-              <CardBody>
-                <VStack spacing={4} align="stretch" height="300px">
+              <CardBody pt={{ base: 0, md: 2 }}>
+                <VStack spacing={{ base: 3, md: 4 }} align="stretch" height={{ base: "auto", md: "300px" }}>
                   {/* Resumen de Usuarios */}
-                  <Grid templateColumns="repeat(2, 1fr)" gap={4}>
-                    <Stat textAlign="center" bg="blue.50" p={3} borderRadius="md">
-                      <StatLabel fontSize="xs">Total Usuarios</StatLabel>
-                      <StatNumber fontSize="xl" color="blue.500">
+                  <Grid templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(2, 1fr)" }} gap={{ base: 2, md: 4 }}>
+                    <Stat textAlign="center" bg="blue.50" p={{ base: 2, md: 3 }} borderRadius="md">
+                      <StatLabel fontSize={{ base: "2xs", md: "xs" }}>Total Usuarios</StatLabel>
+                      <StatNumber fontSize={{ base: "lg", md: "xl" }} color="blue.500">
                         {data.usuarios?.length || 0}
                       </StatNumber>
                     </Stat>
-                    <Stat textAlign="center" bg="green.50" p={3} borderRadius="md">
-                      <StatLabel fontSize="xs">Usuarios Activos</StatLabel>
-                      <StatNumber fontSize="xl" color="green.500">
+                    <Stat textAlign="center" bg="green.50" p={{ base: 2, md: 3 }} borderRadius="md">
+                      <StatLabel fontSize={{ base: "2xs", md: "xs" }}>Usuarios Activos</StatLabel>
+                      <StatNumber fontSize={{ base: "lg", md: "xl" }} color="green.500">
                         {data.usuarios?.filter(u => u.activo !== false).length || 0}
                       </StatNumber>
                     </Stat>
@@ -990,10 +999,10 @@ const Graficas = () => {
 
                   {/* Distribución por Rol */}
                   <Box>
-                    <Heading size="xs" mb={3} color="gray.600">
+                    <Heading size={{ base: "2xs", md: "xs" }} mb={{ base: 2, md: 3 }} color="gray.600">
                       Distribución por Roles
                     </Heading>
-                    <VStack spacing={2} align="stretch">
+                    <VStack spacing={{ base: 1, md: 2 }} align="stretch" maxH={{ base: "120px", md: "auto" }} overflowY="auto">
                       {data.usuarios && data.usuarios.length > 0 ? (
                         Object.entries(
                           data.usuarios.reduce((acc, usuario) => {
@@ -1002,11 +1011,11 @@ const Graficas = () => {
                             return acc;
                           }, {})
                         ).map(([rol, count]) => (
-                          <HStack key={rol} justify="space-between" p={2} bg="gray.50" borderRadius="md">
+                          <HStack key={rol} justify="space-between" p={{ base: 1.5, md: 2 }} bg="gray.50" borderRadius="md">
                             <HStack spacing={2}>
                               <Box 
-                                w={3} 
-                                h={3} 
+                                w={{ base: 2, md: 3 }} 
+                                h={{ base: 2, md: 3 }}
                                 bg={
                                   rol.toLowerCase().includes('admin') ? 'red.500' :
                                   rol.toLowerCase().includes('operador') ? 'blue.500' :
@@ -1015,17 +1024,17 @@ const Graficas = () => {
                                 } 
                                 borderRadius="full" 
                               />
-                              <Text fontSize="sm" fontWeight="medium">
+                              <Text fontSize={{ base: "2xs", md: "sm" }} fontWeight="medium">
                                 {rol}
                               </Text>
                             </HStack>
-                            <Badge colorScheme="brand" size="sm">
+                            <Badge colorScheme="brand" size="sm" fontSize={{ base: "2xs", md: "xs" }}>
                               {count}
                             </Badge>
                           </HStack>
                         ))
                       ) : (
-                        <Text fontSize="sm" color="gray.500" textAlign="center">
+                        <Text fontSize={{ base: "xs", md: "sm" }} color="gray.500" textAlign="center">
                           No hay usuarios registrados
                         </Text>
                       )}
@@ -1034,10 +1043,10 @@ const Graficas = () => {
 
                   {/* Usuarios Recientes */}
                   <Box flex={1}>
-                    <Heading size="xs" mb={2} color="gray.600">
+                    <Heading size={{ base: "2xs", md: "xs" }} mb={{ base: 1, md: 2 }} color="gray.600">
                       Usuarios Recientes
                     </Heading>
-                    <VStack spacing={2} align="stretch" maxH="120px" overflowY="auto">
+                    <VStack spacing={{ base: 1, md: 2 }} align="stretch" maxH={{ base: "100px", md: "120px" }} overflowY="auto">
                       {data.usuarios && data.usuarios.length > 0 ? (
                         data.usuarios
                           .filter(u => u.fechaRegistro || u.createdAt)
@@ -1047,22 +1056,22 @@ const Graficas = () => {
                             <HStack 
                               key={usuario._id || index}
                               spacing={2} 
-                              p={2} 
+                              p={{ base: 1.5, md: 2 }} 
                               bg="white" 
                               borderRadius="md" 
                               border="1px" 
                               borderColor="gray.100"
                             >
-                              <Box w={2} h={2} bg="green.500" borderRadius="full" />
+                              <Box w={{ base: 1.5, md: 2 }} h={{ base: 1.5, md: 2 }} bg="green.500" borderRadius="full" />
                               <VStack align="start" spacing={0} flex={1}>
-                                <Text fontSize="xs" fontWeight="medium">
+                                <Text fontSize={{ base: "2xs", md: "xs" }} fontWeight="medium" noOfLines={1}>
                                   {usuario.nombre || usuario.email || usuario.username || 'Usuario'}
                                 </Text>
-                                <Text fontSize="xs" color="gray.500">
+                                <Text fontSize={{ base: "2xs", md: "xs" }} color="gray.500">
                                   {usuario.rol || usuario.role || 'Usuario'}
                                 </Text>
                               </VStack>
-                              <Text fontSize="xs" color="gray.400">
+                              <Text fontSize={{ base: "2xs", md: "xs" }} color="gray.400" whiteSpace="nowrap">
                                 {new Date(usuario.fechaRegistro || usuario.createdAt).toLocaleDateString('es-MX', { 
                                   month: 'short', 
                                   day: 'numeric' 
@@ -1071,7 +1080,7 @@ const Graficas = () => {
                             </HStack>
                           ))
                       ) : (
-                        <Text fontSize="xs" color="gray.500" textAlign="center">
+                        <Text fontSize={{ base: "2xs", md: "xs" }} color="gray.500" textAlign="center">
                           No hay usuarios recientes
                         </Text>
                       )}
@@ -1084,22 +1093,22 @@ const Graficas = () => {
 
           {/* Luminarias por Ciudad */}
           <GridItem>
-            <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" shadow="md" height="400px">
-              <CardHeader>
-                <Heading size="md" color="brand.500">
-                  Distribución de Luminarias por Ciudad
+            <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" shadow="md" height={{ base: "350px", md: "400px" }}>
+              <CardHeader pb={{ base: 2, md: 4 }}>
+                <Heading size={{ base: "sm", md: "md" }} color="brand.500">
+                  Luminarias por Ciudad
                 </Heading>
-                <Text fontSize="sm" color="gray.600">
-                  Cantidad de luminarias por ubicación
+                <Text fontSize={{ base: "xs", md: "sm" }} color="gray.600">
+                  Cantidad por ubicación
                 </Text>
               </CardHeader>
-              <CardBody>
-                <Box height="300px">
+              <CardBody pt={{ base: 0, md: 2 }}>
+                <Box height={{ base: "280px", md: "300px" }}>
                   <ResponsiveBar
                     data={luminariasPorCiudadData}
                     keys={['value']}
                     indexBy="label"
-                    margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+                    margin={{ top: 30, right: window.innerWidth < 768 ? 80 : 130, bottom: 40, left: window.innerWidth < 768 ? 40 : 60 }}
                     padding={0.3}
                     valueScale={{ type: 'linear' }}
                     indexScale={{ type: 'band', round: true }}
@@ -1112,7 +1121,7 @@ const Graficas = () => {
                       tickSize: 5,
                       tickPadding: 5,
                       tickRotation: 0,
-                      legend: 'Cantidad',
+                      legend: window.innerWidth < 768 ? '' : 'Cantidad',
                       legendPosition: 'middle',
                       legendOffset: -40
                     }}
@@ -1130,27 +1139,27 @@ const Graficas = () => {
 
         </Grid>
 
-        {/* Grid de Mapa y Actividad del Sistema - 2 columnas */}
-        <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+        {/* Grid de Mapa y Actividad del Sistema - Responsive */}
+        <Grid templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(2, 1fr)" }} gap={{ base: 4, md: 6 }}>
           
           {/* Mapa de Luminarias */}
           <GridItem>
-            <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" shadow="md" height="500px">
-              <CardHeader>
-                <Heading size="md" color="brand.500">
+            <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" shadow="md" height={{ base: "400px", md: "500px" }}>
+              <CardHeader pb={{ base: 2, md: 4 }}>
+                <Heading size={{ base: "sm", md: "md" }} color="brand.500">
                   Ubicación de Luminarias
                 </Heading>
-                <Text fontSize="sm" color="gray.600">
+                <Text fontSize={{ base: "xs", md: "sm" }} color="gray.600">
                   {mapData.length} luminarias registradas
                   {mapData.length > 5 && (
-                    <Text as="span" ml={2} fontSize="xs" color="brand.600">
+                    <Text as="span" ml={2} fontSize={{ base: "2xs", md: "xs" }} color="brand.600" display={{ base: "block", md: "inline" }}>
                       • Vista centrada en área de mayor concentración
                     </Text>
                   )}
                 </Text>
               </CardHeader>
-              <CardBody>
-                <Box height="380px" borderRadius="md" overflow="hidden">
+              <CardBody pt={{ base: 0, md: 2 }}>
+                <Box height={{ base: "320px", md: "380px" }} borderRadius="md" overflow="hidden">
                   <MapContainer
                     center={getMapCenter(mapData)}
                     zoom={getOptimalZoom(mapData)}
@@ -1231,45 +1240,45 @@ const Graficas = () => {
 
           {/* Actividad del Sistema */}
           <GridItem>
-            <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" shadow="md" height="500px">
-              <CardHeader>
-                <Heading size="md" color="brand.500">
-                  ctividad del Sistema
+            <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" shadow="md" height={{ base: "400px", md: "500px" }}>
+              <CardHeader pb={{ base: 2, md: 4 }}>
+                <Heading size={{ base: "sm", md: "md" }} color="brand.500">
+                  Actividad del Sistema
                 </Heading>
-                <Text fontSize="sm" color="gray.600">
+                <Text fontSize={{ base: "xs", md: "sm" }} color="gray.600">
                   Estado del sistema y actividad reciente
                 </Text>
               </CardHeader>
-              <CardBody>
+              <CardBody pt={{ base: 0, md: 2 }}>
                 {/* Estado del Sistema */}
-                <VStack spacing={4} align="stretch" height="380px">
-                  <Box bg="gray.50" p={3} borderRadius="md">
-                    <Grid templateColumns="repeat(2, 1fr)" gap={3}>
+                <VStack spacing={{ base: 3, md: 4 }} align="stretch" height={{ base: "320px", md: "380px" }}>
+                  <Box bg="gray.50" p={{ base: 2, md: 3 }} borderRadius="md">
+                    <Grid templateColumns={{ base: "repeat(1, 1fr)", sm: "repeat(2, 1fr)" }} gap={{ base: 2, md: 3 }}>
                       <Stat size="sm">
-                        <StatLabel fontSize="xs">Estado del Sistema</StatLabel>
-                        <StatNumber fontSize="sm" color="green.500">
+                        <StatLabel fontSize={{ base: "2xs", md: "xs" }}>Estado del Sistema</StatLabel>
+                        <StatNumber fontSize={{ base: "xs", md: "sm" }} color="green.500">
                           {getSystemStats().uptime}% Activo
                         </StatNumber>
-                        <StatHelpText fontSize="xs">
+                        <StatHelpText fontSize={{ base: "2xs", md: "xs" }}>
                           {getSystemStats().conectividad}
                         </StatHelpText>
                       </Stat>
                       <Stat size="sm">
-                        <StatLabel fontSize="xs">Luminarias Activas</StatLabel>
-                        <StatNumber fontSize="sm" color="blue.500">
+                        <StatLabel fontSize={{ base: "2xs", md: "xs" }}>Luminarias Activas</StatLabel>
+                        <StatNumber fontSize={{ base: "xs", md: "sm" }} color="blue.500">
                           {getSystemStats().luminariasActivas}/{getSystemStats().totalLuminarias}
                         </StatNumber>
-                        <StatHelpText fontSize="xs">
+                        <StatHelpText fontSize={{ base: "2xs", md: "xs" }}>
                           Conectadas
                         </StatHelpText>
                       </Stat>
                     </Grid>
-                    <HStack mt={3} justify="space-between">
+                    <HStack mt={{ base: 2, md: 3 }} justify="space-between" flexWrap="wrap">
                       <HStack spacing={1}>
-                        <Box w={2} h={2} bg="orange.500" borderRadius="full" />
-                        <Text fontSize="xs">{getSystemStats().alertasActivas} alertas</Text>
+                        <Box w={{ base: 1.5, md: 2 }} h={{ base: 1.5, md: 2 }} bg="orange.500" borderRadius="full" />
+                        <Text fontSize={{ base: "2xs", md: "xs" }}>{getSystemStats().alertasActivas} alertas</Text>
                       </HStack>
-                      <Text fontSize="xs" color="gray.500">
+                      <Text fontSize={{ base: "2xs", md: "xs" }} color="gray.500">
                         Actualizado: {getSystemStats().ultimaActualizacion}
                       </Text>
                     </HStack>
@@ -1277,15 +1286,15 @@ const Graficas = () => {
 
                   {/* Actividad Reciente */}
                   <Box flex={1} overflowY="auto">
-                    <Heading size="xs" mb={2} color="gray.600">
+                    <Heading size={{ base: "2xs", md: "xs" }} mb={{ base: 1, md: 2 }} color="gray.600">
                       Actividad Reciente
                     </Heading>
-                    <VStack spacing={2} align="stretch">
+                    <VStack spacing={{ base: 1.5, md: 2 }} align="stretch">
                       {getSystemActivityData().slice(0, 6).map((activity) => (
                         <HStack 
                           key={activity.id} 
-                          spacing={3} 
-                          p={2} 
+                          spacing={{ base: 2, md: 3 }}
+                          p={{ base: 1.5, md: 2 }}
                           bg="white" 
                           borderRadius="md" 
                           border="1px" 
@@ -1293,16 +1302,16 @@ const Graficas = () => {
                           _hover={{ borderColor: "brand.200", bg: "brand.50" }}
                           transition="all 0.2s"
                         >
-                          <Text fontSize="lg">{activity.icon}</Text>
+                          <Text fontSize={{ base: "md", md: "lg" }}>{activity.icon}</Text>
                           <VStack align="start" spacing={0} flex={1}>
-                            <Text fontSize="xs" fontWeight="medium" color="gray.700">
+                            <Text fontSize={{ base: "2xs", md: "xs" }} fontWeight="medium" color="gray.700" noOfLines={1}>
                               {activity.message}
                             </Text>
-                            <Text fontSize="xs" color="gray.500" fontFamily="mono">
+                            <Text fontSize={{ base: "2xs", md: "xs" }} color="gray.500" fontFamily="mono" noOfLines={1}>
                               {activity.details}
                             </Text>
                           </VStack>
-                          <Badge size="sm" colorScheme={activity.color}>
+                          <Badge size="sm" colorScheme={activity.color} fontSize={{ base: "2xs", md: "xs" }}>
                             {activity.time}
                           </Badge>
                         </HStack>
@@ -1316,40 +1325,40 @@ const Graficas = () => {
 
         </Grid>
 
-        {/* Grid de Tablas - 2 columnas */}
-        <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+        {/* Grid de Tablas - Responsive */}
+        <Grid templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(2, 1fr)" }} gap={{ base: 4, md: 6 }}>
           
           {/* Tabla de Distribución por Estado */}
           <GridItem>
             <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" shadow="md">
-              <CardHeader>
-                <Heading size="md" color="brand.500">
+              <CardHeader pb={{ base: 2, md: 4 }}>
+                <Heading size={{ base: "sm", md: "md" }} color="brand.500">
                   Detalle de Distribución por Estado
                 </Heading>
               </CardHeader>
-              <CardBody>
+              <CardBody pt={{ base: 0, md: 2 }}>
                 <TableContainer>
-                  <Table variant="simple" size="sm">
+                  <Table variant="simple" size={{ base: "sm", md: "md" }}>
                     <Thead>
                       <Tr>
-                        <Th>Estado</Th>
-                        <Th isNumeric>Cantidad</Th>
-                        <Th isNumeric>Porcentaje</Th>
+                        <Th fontSize={{ base: "2xs", md: "xs" }}>Estado</Th>
+                        <Th isNumeric fontSize={{ base: "2xs", md: "xs" }}>Cantidad</Th>
+                        <Th isNumeric fontSize={{ base: "2xs", md: "xs" }}>Porcentaje</Th>
                       </Tr>
                     </Thead>
                     <Tbody>
                       {luminariasData.map((item, index) => (
                         <Tr key={index}>
                           <Td>
-                            <HStack>
-                              <Box w={3} h={3} bg={item.color} borderRadius="sm" />
-                              <Text>{item.label}</Text>
+                            <HStack spacing={{ base: 1, md: 2 }}>
+                              <Box w={{ base: 2, md: 3 }} h={{ base: 2, md: 3 }} bg={item.color} borderRadius="sm" />
+                              <Text fontSize={{ base: "xs", md: "sm" }} noOfLines={1}>{item.label}</Text>
                             </HStack>
                           </Td>
                           <Td isNumeric>
-                            <Badge colorScheme="brand">{item.value}</Badge>
+                            <Badge colorScheme="brand" fontSize={{ base: "2xs", md: "xs" }}>{item.value}</Badge>
                           </Td>
-                          <Td isNumeric>
+                          <Td isNumeric fontSize={{ base: "xs", md: "sm" }}>
                             {((item.value / estadisticas.totalLuminarias) * 100 || 0).toFixed(1)}%
                           </Td>
                         </Tr>
@@ -1364,19 +1373,19 @@ const Graficas = () => {
           {/* Tabla de Últimos Consumos */}
           <GridItem>
             <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" shadow="md">
-              <CardHeader>
-                <Heading size="md" color="brand.500">
+              <CardHeader pb={{ base: 2, md: 4 }}>
+                <Heading size={{ base: "sm", md: "md" }} color="brand.500">
                   Últimos Registros de Consumo
                 </Heading>
               </CardHeader>
-              <CardBody>
+              <CardBody pt={{ base: 0, md: 2 }}>
                 <TableContainer>
-                  <Table variant="simple" size="sm">
+                  <Table variant="simple" size={{ base: "sm", md: "md" }}>
                     <Thead>
                       <Tr>
-                        <Th>Fecha</Th>
-                        <Th isNumeric>Consumo (kWh)</Th>
-                        <Th>Tendencia</Th>
+                        <Th fontSize={{ base: "2xs", md: "xs" }}>Fecha</Th>
+                        <Th isNumeric fontSize={{ base: "2xs", md: "xs" }}>Consumo (kWh)</Th>
+                        <Th fontSize={{ base: "2xs", md: "xs" }}>Tendencia</Th>
                       </Tr>
                     </Thead>
                     <Tbody>
@@ -1385,21 +1394,24 @@ const Graficas = () => {
                         const trend = item.y > prevValue ? 'increase' : item.y < prevValue ? 'decrease' : 'neutral';
                         return (
                           <Tr key={index}>
-                            <Td>{item.x}</Td>
+                            <Td fontSize={{ base: "xs", md: "sm" }}>{item.x}</Td>
                             <Td isNumeric>
-                              <Badge colorScheme={trend === 'increase' ? 'red' : trend === 'decrease' ? 'green' : 'gray'}>
+                              <Badge 
+                                colorScheme={trend === 'increase' ? 'red' : trend === 'decrease' ? 'green' : 'gray'}
+                                fontSize={{ base: "2xs", md: "xs" }}
+                              >
                                 {item.y}
                               </Badge>
                             </Td>
                             <Td>
                               {trend === 'increase' && (
-                                <Icon as={TriangleUpIcon} color="red.500" />
+                                <Icon as={TriangleUpIcon} color="red.500" boxSize={{ base: 3, md: 4 }} />
                               )}
                               {trend === 'decrease' && (
-                                <Icon as={TriangleDownIcon} color="green.500" />
+                                <Icon as={TriangleDownIcon} color="green.500" boxSize={{ base: 3, md: 4 }} />
                               )}
                               {trend === 'neutral' && (
-                                <Text color="gray.500" fontSize="sm">—</Text>
+                                <Text color="gray.500" fontSize={{ base: "xs", md: "sm" }}>—</Text>
                               )}
                             </Td>
                           </Tr>
@@ -1409,7 +1421,7 @@ const Graficas = () => {
                   </Table>
                 </TableContainer>
                 {data.consumos && data.consumos.length > 10 && (
-                  <Text fontSize="sm" color="brand.800" mt={2} textAlign="center">
+                  <Text fontSize={{ base: "xs", md: "sm" }} color="brand.800" mt={{ base: 1, md: 2 }} textAlign="center">
                     Mostrando los 10 registros más recientes de {data.consumos.length} total
                   </Text>
                 )}
@@ -1420,59 +1432,59 @@ const Graficas = () => {
         </Grid>
 
         {/* Debug: Mostrar datos crudos */}
-        <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" shadow="md">
+        <Card bg={cardBg} borderColor={borderColor} borderWidth="1px" shadow="md" display={{ base: "none", lg: "block" }}>
           <CardHeader>
-            <Heading size="md" color="orange.500">
+            <Heading size={{ base: "sm", md: "md" }} color="orange.500">
               Debug - Información de Datos 
             </Heading>
           </CardHeader>
           <CardBody>
-            <Grid templateColumns="repeat(4, 1fr)" gap={4} textAlign="center">
+            <Grid templateColumns={{ base: "repeat(1, 1fr)", sm: "repeat(2, 1fr)", lg: "repeat(4, 1fr)" }} gap={{ base: 3, md: 4 }} textAlign="center">
               <Box>
-                <Text fontWeight="bold" color="brand.500">Luminarias</Text>
-                <Text fontSize="sm">
+                <Text fontWeight="bold" color="brand.500" fontSize={{ base: "xs", md: "sm" }}>Luminarias</Text>
+                <Text fontSize={{ base: "2xs", md: "sm" }}>
                   Tipo: {Array.isArray(data.luminarias) ? 'Array' : typeof data.luminarias}
                 </Text>
-                <Text fontSize="sm">
+                <Text fontSize={{ base: "2xs", md: "sm" }}>
                   Longitud: {data.luminarias?.length || 'undefined'}
                 </Text>
-                <Text fontSize="xs" fontFamily="mono" bg="gray.100" p={1} mt={1} borderRadius="sm">
+                <Text fontSize="2xs" fontFamily="mono" bg="gray.100" p={1} mt={1} borderRadius="sm" noOfLines={3}>
                   {JSON.stringify(data.luminarias?.[0] || 'No data', null, 2).slice(0, 100)}...
                 </Text>
               </Box>
               <Box>
-                <Text fontWeight="bold" color="brand.500">Consumos</Text>
-                <Text fontSize="sm">
+                <Text fontWeight="bold" color="brand.500" fontSize={{ base: "xs", md: "sm" }}>Consumos</Text>
+                <Text fontSize={{ base: "2xs", md: "sm" }}>
                   Tipo: {Array.isArray(data.consumos) ? 'Array' : typeof data.consumos}
                 </Text>
-                <Text fontSize="sm">
+                <Text fontSize={{ base: "2xs", md: "sm" }}>
                   Longitud: {data.consumos?.length || 'undefined'}
                 </Text>
-                <Text fontSize="xs" fontFamily="mono" bg="gray.100" p={1} mt={1} borderRadius="sm">
+                <Text fontSize="2xs" fontFamily="mono" bg="gray.100" p={1} mt={1} borderRadius="sm" noOfLines={3}>
                   {JSON.stringify(data.consumos?.[0] || 'No data', null, 2).slice(0, 100)}...
                 </Text>
               </Box>
               <Box>
-                <Text fontWeight="bold" color="brand.500">Mantenimientos</Text>
-                <Text fontSize="sm">
+                <Text fontWeight="bold" color="brand.500" fontSize={{ base: "xs", md: "sm" }}>Mantenimientos</Text>
+                <Text fontSize={{ base: "2xs", md: "sm" }}>
                   Tipo: {Array.isArray(data.mantenimientos) ? 'Array' : typeof data.mantenimientos}
                 </Text>
-                <Text fontSize="sm">
+                <Text fontSize={{ base: "2xs", md: "sm" }}>
                   Longitud: {data.mantenimientos?.length || 'undefined'}
                 </Text>
-                <Text fontSize="xs" fontFamily="mono" bg="gray.100" p={1} mt={1} borderRadius="sm">
+                <Text fontSize="2xs" fontFamily="mono" bg="gray.100" p={1} mt={1} borderRadius="sm" noOfLines={3}>
                   {JSON.stringify(data.mantenimientos?.[0] || 'No data', null, 2).slice(0, 100)}...
                 </Text>
               </Box>
               <Box>
-                <Text fontWeight="bold" color="brand.500">Usuarios</Text>
-                <Text fontSize="sm">
+                <Text fontWeight="bold" color="brand.500" fontSize={{ base: "xs", md: "sm" }}>Usuarios</Text>
+                <Text fontSize={{ base: "2xs", md: "sm" }}>
                   Tipo: {Array.isArray(data.usuarios) ? 'Array' : typeof data.usuarios}
                 </Text>
-                <Text fontSize="sm">
+                <Text fontSize={{ base: "2xs", md: "sm" }}>
                   Longitud: {data.usuarios?.length || 'undefined'}
                 </Text>
-                <Text fontSize="xs" fontFamily="mono" bg="gray.100" p={1} mt={1} borderRadius="sm">
+                <Text fontSize="2xs" fontFamily="mono" bg="gray.100" p={1} mt={1} borderRadius="sm" noOfLines={3}>
                   {JSON.stringify(data.usuarios?.[0] || 'No data', null, 2).slice(0, 100)}...
                 </Text>
               </Box>

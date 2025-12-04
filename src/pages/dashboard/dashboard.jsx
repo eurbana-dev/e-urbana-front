@@ -7,7 +7,7 @@ const Dashboard = ({ children }) => {
     return (
         <div className="dashboard-container">
             <Graficas />
-            <Analisis />
+          
             {children}
         </div>
     );
