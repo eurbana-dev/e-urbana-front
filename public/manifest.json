@@ -1,7 +1,7 @@
 {
   "name": "E-Urbana",
   "short_name": "E-Urbana",
-  "description": "Sistema de gestión de alumbrado público",
+  "description": "E. Urbana es una plataforma inteligente para el monitoreo y gestión eficiente de luminarias exteriores en empresas, universidades y espacios privados. Optimiza el consumo energético, reduce costos y mejora la trazabilidad de tu infraestructura en tiempo real.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -19,6 +19,19 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-desktop.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "1080x1920",
+      "type": "image/png"
     }
   ]
 }

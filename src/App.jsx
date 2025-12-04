@@ -21,7 +21,7 @@ function App() {
         
         <main className="main-content">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<AuthPage />} />
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/login" element={<AuthPage />} />
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
